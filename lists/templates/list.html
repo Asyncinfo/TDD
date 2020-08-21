@@ -4,20 +4,22 @@
     </head>
     <body>
         <h1>Start a new To-Do list</h1>
-        <form method="POST" action="/">
+        <!-- <form method="POST" action="/lists/new"> -->
+        <form method="POST" action="/lists/{{ list.id }}/add_item">
             <input name="item_text" id="id_new_item" placeholder="Enter a to-do item">
             {% csrf_token %}
         </form>
-        <!-- <table id="id_list_table">
-            # <tr>
+        <table id="id_list_table">
+            <!-- <tr>
                 <td>
                     {{ new_item_text }}
                 </td>
-            </tr> #
-            {% for item in items %}
-                # <tr><td>1: {{ item.text }}</td></tr>
+            </tr> -->
+            <!-- {% for item in items %} -->
+            {% for item in list.item_set.all %}
+                <!-- <tr><td>1: {{ item.text }}</td></tr> -->
                 <tr><td>{{ forloop.counter }}:{{ item.text }}</td></tr>
             {% endfor %}
-        </table> -->
+        </table>
     </body>
 </html>
